@@ -30,7 +30,10 @@ document.getElementById('btn-converter').addEventListener('click', () => {
   if (de === 'psi')  para = 'kPa';
 
   try {
-    const resultado = converterUnidade(valor, de, para).toFixed(3);
+    const resultadoBruto = converterUnidade(valor, de, para);
+    // Formatação: 1 decimal para pressão, 3 decimais para as demais
+    const casas = (para === 'kPa') ? 1 : 3;
+    const resultado = resultadoBruto.toFixed(casas);
     document.getElementById('resultado-conversao')
       .textContent = `${valor} ${de} = ${resultado} ${para}`;
   } catch (err) {
@@ -39,7 +42,6 @@ document.getElementById('btn-converter').addEventListener('click', () => {
   }
 });
 
-// Evento para calcular Qₛ
 document.getElementById('btn-calcular').addEventListener('click', () => {
   const m  = parseFloat(document.getElementById('massa').value);
   const c  = parseFloat(document.getElementById('calor-especifico').value);
