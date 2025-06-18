@@ -1,0 +1,22 @@
+body {
+  font-family: sans-serif;
+  margin: 2rem;
+}
+section {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+label {
+  display: block;
+  margin: 0.5rem 0;
+}
+button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+}
+#resultado-conversao, #resultado-calor {
+  margin-top: 1rem;
+  font-weight: bold;
+}
