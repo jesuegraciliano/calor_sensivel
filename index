@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <title>Conversor de Unidades & Calor Sensível</title>
   <link rel="stylesheet" href="style.css">
+<body>
+  <header>
+    <img src="logo-ifsc.png" alt="Instituto Federal Santa Catarina" id="header-logo">
+    <h1>Conversor de Unidades e Cálculo de Calor Sensível</h1>
+  </header>
 </head>
 <body>
   <h1>Conversor de Unidades e Cálculo de Calor Sensível</h1>
