@@ -20,31 +20,20 @@ function calcularCalorSensivel(massa, ce, t1, t2) {
 
 // Eventos no DOM
 document.getElementById('btn-converter').addEventListener('click', () => {
-  const valor   = parseFloat(document.getElementById('input-value').value);
-  const de      = document.getElementById('input-unit').value;
-  let   para;
-
-  // Define unidade de saída com base na opção selecionada
+  const rawValor = document.getElementById('input-value').value;
+  const valor = parseFloat(rawValor.replace(',', '.'));
+  const de = document.getElementById('input-unit').value;
+  let para;
   if (de === 'kcal') para = 'kJ';
   if (de === 'g')    para = 'kg';
   if (de === 'psi')  para = 'kPa';
 
   try {
     const resultadoBruto = converterUnidade(valor, de, para);
-    // Número de casas decimais: 1 para kPa, 3 para os demais
     const casas = (para === 'kPa') ? 1 : 3;
-    // Formatação em notação brasileira (vírgula decimal)
-    const resultado = resultadoBruto.toLocaleString('pt-BR', {
-      minimumFractionDigits: casas,
-      maximumFractionDigits: casas
-    });
-    // Formata também o valor de entrada com até 3 decimais
-    const valorFormatado = valor.toLocaleString('pt-BR', {
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 3
-    });
+    const resultado = resultadoBruto.toFixed(casas).replace('.', ',');
     document.getElementById('resultado-conversao')
-      .textContent = `${valorFormatado} ${de} = ${resultado} ${para}`;
+      .textContent = `${rawValor.replace('.', ',')} ${de} = ${resultado} ${para}`;
   } catch (err) {
     document.getElementById('resultado-conversao')
       .textContent = err.message;
@@ -52,16 +41,12 @@ document.getElementById('btn-converter').addEventListener('click', () => {
 });
 
 document.getElementById('btn-calcular').addEventListener('click', () => {
-  const m  = parseFloat(document.getElementById('massa').value);
-  const c  = parseFloat(document.getElementById('calor-especifico').value);
+  const m = parseFloat(document.getElementById('massa').value);
+  const c = parseFloat(document.getElementById('calor-especifico').value);
   const t1 = parseFloat(document.getElementById('t-inicial').value);
   const t2 = parseFloat(document.getElementById('t-final').value);
-  // Cálculo de calor sensível e formatação brasileira com 1 casa decimal
   const qBruto = calcularCalorSensivel(m, c, t1, t2);
-  const q = qBruto.toLocaleString('pt-BR', {
-    minimumFractionDigits: 1,
-    maximumFractionDigits: 1
-  });
+  const q = qBruto.toFixed(1).replace('.', ',');
   document.getElementById('resultado-calor')
     .textContent = `Qₛ = ${q} kJ`;
 });
