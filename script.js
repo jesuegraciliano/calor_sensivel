@@ -7,7 +7,7 @@ function converterUnidade(valor, de, para) {
     return valor / 1000;
   }
   if (de === 'psi' && para === 'kPa') {
-    // Fator exato: 1 psi ≈ 6.89476 kPa
+    // Fator exato: 1 psi ≈ 6.89 kPa
     return valor * 6.89476;
   }
   throw new Error(`Conversão de ${de} para ${para} não implementada.`);
